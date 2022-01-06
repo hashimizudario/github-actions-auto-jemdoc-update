@@ -1,5 +1,5 @@
 name: 'auto-jemdoc-update'
-description: 'Automatically update your jemdoc documents upon commiting, by default using jemdoc+mathjax on your main branch"
+description: 'Automatically update your jemdoc documents upon commiting, by default using jemdoc+mathjax on your main branch'
 author: Yuxuan Li
 inputs:
   files: 
