@@ -1,8 +1,10 @@
 name: 'auto-jemdoc-update'
 description: 'Automatically update your jemdoc documents upon commiting, by default using jemdoc+mathjax on your main branch"
+author: Yuxuan Li
 inputs:
   files: 
     description: 'space seperated string of jemdoc files, e.g. index.jemdoc publications.jemdoc'
+    reuiqred: false
     default: 'index.jemdoc'
 
 runs:
