@@ -1,0 +1,36 @@
+name: 'auto-jemdoc-update'
+description: 'Automatically update your jemdoc documents upon commiting, by default using jemdoc+mathjax on your main branch"
+inputs:
+  files: 
+    description: 'space seperated string of jemdoc files, e.g. index.jemdoc publications.jemdoc'
+    default: 'index.jemdoc'
+
+runs:
+  steps:
+    - name: check out your mian branch
+      uses: actions/checkout@v2
+      with:
+          path: main
+    
+    - name: checkout jemdoc + Mathjax
+        uses: actions/checkout@v2
+        with:  
+          repository: wsshin/jemdoc_mathjax
+          path: jemdoc_mathjax
+    
+    - name: setup python
+        uses: actions/setup-python@v2.3.1
+
+    - name: update
+      run: |
+        cd main
+        git config --global user.name 'GithubActionAutoJemdocUpdate'
+        git config --global user.email 'githubaction@autojemdocupdate.com'
+        for $i in ${{inputs.files}}
+          do
+            python ../jemdoc_mathjax/jemdoc $i
+            git add $i
+          done
+        git commit -m "Automatic Update"
+        git push
+        
